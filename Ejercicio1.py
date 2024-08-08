@@ -23,7 +23,7 @@ print("Vector difference:", difference_vector)
 dot_product = sum(a * b for a, b in zip(vector_a, vector_b))
 print("Dot product:", dot_product)
 
-# Cross product of vectors (only for 3D vectors)
+# Cross product of vectors 
 def cross_product(vector_a, vector_b):
     return [vector_a[1]*vector_b[2] - vector_a[2]*vector_b[1],
             vector_a[2]*vector_b[0] - vector_a[0]*vector_b[2],
