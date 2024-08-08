@@ -1,3 +1,12 @@
+# Matrix in Python
+# =======================
+
+# Initialize date and time
+import datetime
+print(f"**User:** Alejandro")
+print(f"**Date and Time:** {datetime.datetime.now()}")
+
+# Code
 # Initialize the matrices
 matrix_A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 matrix_B = [[10, 11, 12], [13, 14, 15], [16, 17, 18]]
