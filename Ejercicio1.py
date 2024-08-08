@@ -1,9 +1,28 @@
-# Solicitar valores de corriente y voltaje al usuario
-corriente = float(input("Ingrese el valor de corriente (A): "))
-voltaje = float(input("Ingrese el valor de voltaje (V): "))
+# Initialize two vectors
+vector_a = [1, 2, 3]
+vector_b = [4, 5, 6]
 
-# Calcular la potencia
-potencia = corriente * voltaje
+# Vector addition
+sum_vector = [a + b for a, b in zip(vector_a, vector_b)]
+print("Vector sum:", sum_vector)
 
-# Mostrar el resultado
-print(f"La potencia que consume el circuito es: {potencia:.2f} W")
+# Vector subtraction
+difference_vector = [a - b for a, b in zip(vector_a, vector_b)]
+print("Vector difference:", difference_vector)
+
+# Dot product of vectors
+dot_product = sum(a * b for a, b in zip(vector_a, vector_b))
+print("Dot product:", dot_product)
+
+# Cross product of vectors (only for 3D vectors)
+def cross_product(vector_a, vector_b):
+    return [vector_a[1]*vector_b[2] - vector_a[2]*vector_b[1],
+            vector_a[2]*vector_b[0] - vector_a[0]*vector_b[2],
+            vector_a[0]*vector_b[1] - vector_a[1]*vector_b[0]]
+
+cross_product_vector = cross_product(vector_a, vector_b)
+print("Cross product:", cross_product_vector)
+
+# Vector division (cannot divide by zero)
+division_vector = [a / b for a, b in zip(vector_a, vector_b) if b != 0]
+print("Vector division:", division_vector)
