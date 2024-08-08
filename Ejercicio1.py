@@ -1,3 +1,12 @@
+# Vectors in Python
+# =======================
+
+# Initialize date and time
+import datetime
+print(f"**User:** Alejandro")
+print(f"**Date and Time:** {datetime.datetime.now()}")
+
+# Code
 # Initialize two vectors
 vector_a = [1, 2, 3]
 vector_b = [4, 5, 6]
