@@ -1,36 +1,37 @@
-import matplotlib.pyplot as plt
-import numpy as np
+# Resistance of a Platinum RTD (PT100)in Python
+# =======================
 
-# Definir los nombres de los integrantes del grupo
-names = ["Alejandro", "Alfonso", "Galvis"]
+# Initialize date and time
+import datetime
+print(f"**User:** Alejandro")
+print(f"**Date and Time:** {datetime.datetime.now()}")
 
-# Definir las coordenadas x e y para cada nombre
-x_coords = [0, 2, 4]
-y_coords = [0, 1, 2]
+# Code
+def calculate_resistance(temperature):
+    """
+    Calculates the resistance of a Platinum RTD (PT100) based on the temperature.
 
-# Crear un plot en 2D
-fig, ax = plt.subplots()
+    Parameters:
+    temperature (float): Temperature in degrees Celsius.
 
-# Dibujar las líneas rectas que conectan los nombres
-ax.plot([x_coords[0], x_coords[1]], [y_coords[0], y_coords[1]], 'k-')
-ax.plot([x_coords[1], x_coords[2]], [y_coords[1], y_coords[2]], 'k-')
+    Returns:
+    float: Resistance in ohms.
+    """
+    # Coefficients for the Callendar-Van Dusen equation
+    a = 3.9083e-3
+    b = -5.775e-7
+    c = -4.183e-12
 
-# Dibujar las curvas que rodean cada nombre
-for i, name in enumerate(names):
-    ax.plot(x_coords[i] + np.cos(np.linspace(0, 2*np.pi, 100)), 
-            y_coords[i] + np.sin(np.linspace(0, 2*np.pi, 100)), 
-            'b-')
+    # Callendar-Van Dusen equation
+    resistance = 100 * (1 + a * temperature + b * temperature**2 + c * temperature**3)
 
-# Agregar los nombres como texto en el plot
-for i, name in enumerate(names):
-    ax.text(x_coords[i], y_coords[i], name, ha='center', va='center')
+    return resistance
 
-# Configurar el plot
-ax.set_xlim(-1, 5)
-ax.set_ylim(-1, 3)
-ax.set_title("Integrantes del grupo")
-ax.set_xlabel("X")
-ax.set_ylabel("Y")
+# Test temperature (in degrees Celsius)
+test_temperature = 25
 
-# Mostrar el plot
-plt.show()
+# Calculate the resistance
+resistance = calculate_resistance(test_temperature)
+
+# Print the result
+print(f"The resistance of the Platinum RTD (PT100) at {test_temperature}°C is {resistance:.2f} ohms")

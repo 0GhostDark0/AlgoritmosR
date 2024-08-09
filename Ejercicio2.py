@@ -1,4 +1,4 @@
-# Matrix in Python
+# Matrices in Python
 # =======================
 
 # Initialize date and time

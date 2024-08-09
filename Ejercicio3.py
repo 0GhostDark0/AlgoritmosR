@@ -1,8 +1,27 @@
+# Coordinates in Python
+# =======================
+
+# Initialize date and time
+import datetime
+print(f"**User:** Alejandro")
+print(f"**Date and Time:** {datetime.datetime.now()}")
+
+# Import library
 import math
 
+
+# Code
 def rectangular_to_cylindrical(x, y, z):
     """
-    Convierte coordenadas rectangulares (x, y, z) a cilíndricas (r, theta, z)
+    Converts rectangular coordinates to cylindrical coordinates.
+    
+    Args:
+        x (float): Rectangular x coordinate.
+        y (float): Rectangular y coordinate.
+        z (float): Rectangular z coordinate.
+    
+    Returns:
+        tuple: Cylindrical coordinates (r, theta, z).
     """
     r = math.sqrt(x**2 + y**2)
     theta = math.atan2(y, x)
@@ -10,22 +29,26 @@ def rectangular_to_cylindrical(x, y, z):
 
 def rectangular_to_spherical(x, y, z):
     """
-    Convierte coordenadas rectangulares (x, y, z) a esféricas (r, theta, phi)
+    Converts rectangular coordinates to spherical coordinates.
+    
+    Args:
+        x (float): Rectangular x coordinate.
+        y (float): Rectangular y coordinate.
+        z (float): Rectangular z coordinate.
+    
+    Returns:
+        tuple: Spherical coordinates (rho, theta, phi).
     """
-    r = math.sqrt(x**2 + y**2 + z**2)
+    rho = math.sqrt(x**2 + y**2 + z**2)
     theta = math.atan2(y, x)
-    phi = math.acos(z / r)
-    return r, theta, phi
+    phi = math.acos(z / rho)
+    return rho, theta, phi
 
-# Coordenadas rectangulares de ejemplo
-x = 3
-y = 4
-z = 5
+# Example usage
+x, y, z = 1, 2, 3
+r, theta, z_cylindrical = rectangular_to_cylindrical(x, y, z)
+rho, theta_spherical, phi = rectangular_to_spherical(x, y, z)
 
-# Convertir a coordenadas cilíndricas
-r_cyl, theta_cyl, z_cyl = rectangular_to_cylindrical(x, y, z)
-print(f"Coordenadas cilíndricas: r={r_cyl:.2f}, theta={theta_cyl:.2f} rad, z={z_cyl:.2f}")
-
-# Convertir a coordenadas esféricas
-r_sph, theta_sph, phi_sph = rectangular_to_spherical(x, y, z)
-print(f"Coordenadas esféricas: r={r_sph:.2f}, theta={theta_sph:.2f} rad, phi={phi_sph:.2f} rad")
+print("Rectangular coordinates:", x, y, z)
+print("Cylindrical coordinates:", r, theta, z_cylindrical)
+print("Spherical coordinates:", rho, theta_spherical, phi)
