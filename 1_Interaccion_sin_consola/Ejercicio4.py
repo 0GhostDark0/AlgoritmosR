@@ -1,4 +1,4 @@
-# Resistance of a Platinum RTD (PT100)in Python
+# Resistance of a Platinum RTD (PT100) in Python
 # =======================
 
 # Initialize date and time
@@ -17,13 +17,23 @@ def calculate_resistance(temperature):
     Returns:
     float: Resistance in ohms.
     """
-    # Coefficients for the Callendar-Van Dusen equation
+    # Coefficients for the Callendar-Van Dusen equation (positive temperatures)
     a = 3.9083e-3
     b = -5.775e-7
     c = -4.183e-12
 
-    # Callendar-Van Dusen equation
-    resistance = 100 * (1 + a * temperature + b * temperature**2 + c * temperature**3)
+    # Coefficients for the Callendar-Van Dusen equation (negative temperatures)
+    a_neg = 3.9083e-3
+    b_neg = -5.775e-7
+    c_neg = -4.183e-12
+    d_neg = 1.235e-15
+
+    if temperature >= 0:
+        # Callendar-Van Dusen equation for positive temperatures
+        resistance = 100 * (1 + a * temperature + b * temperature**2 + c * temperature**3)
+    else:
+        # Callendar-Van Dusen equation for negative temperatures
+        resistance = 100 * (1 + a_neg * temperature + b_neg * temperature**2 + c_neg * temperature**3 + d_neg * temperature**4)
 
     return resistance
 

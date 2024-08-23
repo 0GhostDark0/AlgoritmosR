@@ -1,10 +1,9 @@
-#Transfer function in Python
+# Transfer function in Python
 # =======================
 # Initialize date and time
 import datetime
 print(f"**User:** Alejandro")
 print(f"**Date and Time:** {datetime.datetime.now()}")
-
 
 # Import library
 import numpy as np
@@ -12,10 +11,10 @@ import matplotlib.pyplot as plt
 from scipy.signal import tf2ss, lti
 
 # code
-def plot_transfer_function(a, b, c, d):
+def plot_transfer_function(wn, zeta):
     # Create the second-order transfer function
-    num = [a, b]
-    den = [1, c, d]
+    num = [wn**2]
+    den = [1, 2*zeta*wn, wn**2]
     sys = tf2ss(num, den)
 
     # Plot the frequency response
@@ -26,10 +25,9 @@ def plot_transfer_function(a, b, c, d):
     plt.xlabel('Frequency (rad/s)')
     plt.ylabel('Magnitude (dB)')
 
-    discriminant = c**2 - 4*d
-    if discriminant > 0:
+    if zeta > 1:
         title = "Overdamped System Frequency Response"
-    elif discriminant == 0:
+    elif zeta == 1:
         title = "Critically Damped System Frequency Response"
     else:
         title = "Underdamped System Frequency Response"
@@ -45,18 +43,16 @@ def plot_transfer_function(a, b, c, d):
     plt.show()
 
     # Determine the system type
-    if discriminant > 0:
+    if zeta > 1:
         print("The system is overdamped.")
-    elif discriminant == 0:
+    elif zeta == 1:
         print("The system is critically damped.")
     else:
         print("The system is underdamped.")
 
 # Ask the user to input the coefficients
-a = float(input("Enter coefficient a: "))
-b = float(input("Enter coefficient b: "))
-c = float(input("Enter coefficient c: "))
-d = float(input("Enter coefficient d: "))
+wn = float(input("Enter natural frequency (wn): "))
+zeta = float(input("Enter damping ratio (zeta): "))
 
 # Plot the transfer function
-plot_transfer_function(a, b, c, d)
+plot_transfer_function(wn, zeta)
